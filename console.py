@@ -129,6 +129,11 @@ class HBNBCommand(cmd.Cmd):
                 if new_split[1][0] == '\'':
                     new_split[1] = new_split[1].replace("\"", "")
                     new_split[1] = new_split[1].replace("_", " ")
+                elif "." in new_split[1]:
+                    new_split[1] = float(new_split[1])
+                else:
+                    new_split[1] = int(new_split[1])
+                setattr(new_instance, new_split[0], new_split[1])
             except Exception:
                 continue  
         new_instance.save()
