@@ -123,16 +123,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         new_instance = HBNBCommand.classes[new[0]]()
-        if new:
-            for j in range(len(new)):
-                if type(new) is str:
-                    for i in range(len(new)):
-                        if new[i] == '"':
-                            new[i-1] += "\\"
-                        elif new[i] == "_":
-                            new[i] = " "
-                        else:
-                            continue
+        for i in range(len(new)):
+            new_split = new[i].split("=")
+            try:
+                if new_split[1][0] == '\'':
+                    new_split[1] = new_split[1].replace("\"", "")
+                    new_split[1] = new_split[1].replace("_", " ")
+            except Exception:
+                continue  
         new_instance.save()
         print(new_instance.id)
 
