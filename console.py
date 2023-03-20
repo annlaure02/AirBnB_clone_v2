@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
         for i in range(len(new)):
             new_split = new[i].split("=")
             try:
-                if new_split[1][0] == '\'':
+                if new_split[1][0] == "\"":
                     new_split[1] = new_split[1].replace("\"", "")
                     new_split[1] = new_split[1].replace("_", " ")
                 elif "." in new_split[1]:
@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
                     new_split[1] = int(new_split[1])
                 setattr(new_instance, new_split[0], new_split[1])
             except Exception:
-                continue  
+                continue
         new_instance.save()
         print(new_instance.id)
 
