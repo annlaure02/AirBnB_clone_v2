@@ -122,6 +122,7 @@ class HBNBCommand(cmd.Cmd):
         elif new[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
+        new_instance = HBNBCommand.classes[new[0]]()
         if new:
             for j in range(len(new)):
                 if type(new) is str:
@@ -132,7 +133,6 @@ class HBNBCommand(cmd.Cmd):
                             new[i] = " "
                         else:
                             continue
-        new_instance = HBNBCommand.classes[new[0]]()
         new_instance.save()
         print(new_instance.id)
 
